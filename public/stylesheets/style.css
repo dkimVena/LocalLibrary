@@ -1,0 +1,10 @@
+.sidebar-nav {
+	margin-top: 20px;
+	padding: 0;
+	list-style: none;
+}
+
+#genre_detail, #book_detail, #author_detail {
+	margin-left:20px;
+	margin-top:20px;
+}

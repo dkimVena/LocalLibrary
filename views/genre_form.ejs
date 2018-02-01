@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ./partials/head.ejs %>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          <% include ./partials/nav.ejs %>
+        </div>
+        <div class="col-sm-10">
+          <h1><%=title%></h1>
+          <form method='POST' action=''>
+            <div class="form-group">
+              <label for="name">Genre: </label>
+              <input id="name" name="name" class="form-control" type="text" placeholder="Fantasy, Poetry etc." required="true" value=<%=typeof genre=="undefined"? '': genre.name%>>
+            </div>
+            <button typeclass="btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

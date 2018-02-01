@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<% include ./partials/head.ejs %>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          <% include ./partials/nav.ejs %>
+        </div>
+        <div class="col-sm-10">
+			<h1><%=book.title%></h1>
+
+			<p>
+				<strong>Author: </strong>
+				<a href=<%=book.author.url%>><%=book.author.name%></a>
+			</p>
+			<p>
+				<strong>Summary: </strong>
+				<%=book.summary%>
+			</p>
+			<p>
+				<strong>ISBN: </strong>
+				<%=book.isbn%>
+			</p>
+			<p>
+				<strong>Genre:&nbsp;</strong>
+				<%for(var i=0; book.genre.length>i; i++){%>
+					<a href=<%=book.genre[i].url%>><%=book.genre[i].name%></a>
+					<%if(book.genre.length != i+1){%>
+						,
+					<%}%>
+				<%}%>
+			</p>
+			<div id="book_detail">
+				<h4>Copies</h4>
+				<%if(book_instances.length>0){%>
+					<%for(var i=0; book_instances.length>i; i++) {%>
+					<hr>
+						<%if(book_instances[i].status == 'Available'){%>
+							<p class="text-success"><%=book_instances[i].status%></p>
+						<%} else if(book_instances[i].status == 'Maintenance'){%>
+							<p class="text-danger"><%=book_instances[i].status%></p>
+						<%} else {%>
+							<p class="text-warning"><%=book_instances[i].status%></p>
+						<%}%>
+					</hr>
+					<p>
+						<strong>Imprint: </strong>
+						<%=book_instances[i].imprint%>
+					</p>
+						<%if(book_instances[i].status != 'Available'){%>
+							<p>
+								<strong>Due back: </strong>
+								<%=book_instances[i].due_back%>
+							</p>
+						<%}%>
+						<p>
+							<strong>Id: </strong>&nbsp;
+							<a href=<%=book_instances[i].url%>><%=book_instances[i]._id%></a>
+						</p>
+					<%}%>
+				<%} else {%>
+					<p>There are no copies of this book in the library.</p>
+				<%}%>
+			</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
